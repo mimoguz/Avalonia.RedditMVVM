@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove=".gitignore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TrimmerRootDescriptor Include="Roots.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.0.0-preview4" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.0.0-preview4" />
+    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.0-preview4" />
+    <PackageReference Include="Avalonia.Xaml.Behaviors" Version="11.0.0-preview4" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+    <PackageReference Include="FluentAvalonia.UI.Windowing" Version="2.0.0-preview4" />
+    <PackageReference Include="FluentAvaloniaUI" Version="2.0.0-preview4" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Nito.AsyncEx" Version="5.1.2" />
+    <PackageReference Include="Refit" Version="6.3.2" />
+    <PackageReference Include="XamlNameReferenceGenerator" Version="1.4.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaXaml Update="App.axaml">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </AvaloniaXaml>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\PostWidget.axaml.cs">
+      <DependentUpon>PostWidget.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\SubredditWidget.axaml.cs">
+      <DependentUpon>SubredditWidget.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>

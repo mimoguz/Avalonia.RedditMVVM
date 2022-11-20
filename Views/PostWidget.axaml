@@ -1,0 +1,47 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.RedditMVVM.Views.PostWidget"
+			 xmlns:converters="clr-namespace:Avalonia.Data.Converters;assembly=Avalonia.Base">
+
+	<UserControl.Resources>
+	</UserControl.Resources>
+	<Grid
+		ColumnDefinitions="52, 1*"
+		RowDefinitions="52,1*"
+		HorizontalAlignment="Stretch"
+		Background="{DynamicResource SolidBackgroundFillColorBase}">
+
+		<Panel Background="{DynamicResource SystemAccentColor}">
+			<Image
+			Source="{Binding Post.ThumbnailImage}"
+			Width="52"
+			Height="52"
+			Stretch="Uniform"
+			Grid.Column="0"
+			Grid.Row="0" />
+		</Panel>
+
+		<TextBlock
+			Text="{Binding Post.Title}"
+			VerticalAlignment="Center"
+			FontWeight="Medium"
+			FontSize="16"
+			Margin="10,4"
+			TextTrimming="CharacterEllipsis"
+			Grid.Column="1"
+			Grid.Row="0" />
+
+		<TextBox
+			Text="{Binding Post.SelfText}"
+			TextWrapping="Wrap"
+			IsReadOnly="True"
+			CornerRadius="0"
+			BorderThickness="0"
+			Grid.Column="0"
+			Grid.Row="1"
+			Grid.ColumnSpan="2" />
+	</Grid>
+</UserControl>

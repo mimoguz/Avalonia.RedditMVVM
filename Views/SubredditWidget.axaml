@@ -1,0 +1,74 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.RedditMVVM.Views.SubredditWidget"
+
+			 xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+			 xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+			 xmlns:views="using:Avalonia.RedditMVVM.Views">
+
+	<Grid ColumnDefinitions="1*, 4, 2*">
+
+		<StackPanel
+			Orientation="Vertical"
+			Grid.Column="0"
+			VerticalAlignment="Stretch"
+			Background="{DynamicResource SolidBackgroundFillColorBase}">
+			<ComboBox
+				Items="{Binding Subreddits}"
+				SelectedItem="{Binding SelectedSubreddit, Mode=TwoWay}"
+				x:Name="subredditsComboBox"
+				HorizontalAlignment="Stretch"
+				CornerRadius="0"
+				BorderBrush="{DynamicResource SolidBackgroundFillColorBase}">
+				<!--<i:Interaction.Behaviors>
+						<ia:EventTriggerBehavior EventName="SelectionChanged" SourceObject="subredditsComboBox">
+							<ia:InvokeCommandAction Command="{Binding LoadPostsCommand}" />
+						</ia:EventTriggerBehavior>
+					</i:Interaction.Behaviors>-->
+			</ComboBox>
+
+			<ProgressBar IsIndeterminate="{Binding LoadPostsCommand.IsRunning}" Background="Transparent" />
+
+			<ListBox
+				Items="{Binding Posts}"
+				SelectedItem="{Binding SelectedPost, Mode=TwoWay}"
+				VerticalAlignment="Stretch"
+				CornerRadius="0"
+				BorderThickness="0"
+				Margin="4">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Grid ColumnDefinitions="52,8,*" RowDefinitions="52">
+							<TextBlock
+								Text="·"
+								FontSize="32"
+								FontWeight="ExtraBold"
+								Foreground="{DynamicResource SystemAccentColor}"
+								Grid.Column="0"
+								VerticalAlignment="Center"
+								HorizontalAlignment="Center"
+								IsVisible="{Binding ThumbnailImage, Converter={x:Static ObjectConverters.IsNull}}" />
+							<Image
+								Source="{Binding ThumbnailImage}"
+								Width="52"
+								Height="52"
+								Stretch="Uniform" />
+							<TextBlock
+								Text="{Binding Title}"
+								TextTrimming="CharacterEllipsis"
+								Grid.Column="2"
+								VerticalAlignment="Center" />
+						</Grid>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</StackPanel>
+
+		<GridSplitter Grid.Column="1" ResizeDirection="Columns" />
+
+		<views:PostWidget Grid.Column="2" />
+	</Grid>
+</UserControl>

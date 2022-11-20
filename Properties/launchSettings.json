@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "Avalonia.RedditMVVM": {
+      "commandName": "Project"
+    }
+  }
+}
