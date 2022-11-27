@@ -21,8 +21,7 @@
 				SelectedItem="{Binding SelectedSubreddit, Mode=TwoWay}"
 				x:Name="subredditsComboBox"
 				HorizontalAlignment="Stretch"
-				CornerRadius="0"
-				BorderBrush="{DynamicResource SolidBackgroundFillColorBase}">
+				Margin="8">
 				<!--<i:Interaction.Behaviors>
 						<ia:EventTriggerBehavior EventName="SelectionChanged" SourceObject="subredditsComboBox">
 							<ia:InvokeCommandAction Command="{Binding LoadPostsCommand}" />
@@ -36,9 +35,8 @@
 				Items="{Binding Posts}"
 				SelectedItem="{Binding SelectedPost, Mode=TwoWay}"
 				VerticalAlignment="Stretch"
-				CornerRadius="0"
 				BorderThickness="0"
-				Margin="4">
+				Margin="8">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
 						<Grid ColumnDefinitions="52,8,*" RowDefinitions="52">
